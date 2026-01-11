@@ -31,9 +31,3 @@ int main(int argc, char** argv) {
         doomgeneric_Tick();
     }
 }
-
-__attribute__((export_name("run")))
-void run() {
-    char* args[1] = { "/doomgeneric.wasm" };
-    main(1, args);
-}

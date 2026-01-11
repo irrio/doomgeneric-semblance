@@ -1,7 +1,10 @@
 
+LIBCSYSROOT=../libc/target/sysroot
+CRT1=$(LIBCSYSROOT)/lib/crt1.o
+
 CC=clang
-LDFLAGS=-Wl,--no-entry
-CFLAGS=-Wall --target=wasm32 --sysroot=../libc/target/sysroot -ffreestanding -nostdlib
+LDFLAGS=-L$(LIBCSYSROOT)/lib -lc
+CFLAGS=-Wall --target=wasm32-unknown-unknown -mbulk-memory -O3 -ffreestanding -nostdlib -I$(LIBCSYSROOT)/include
 
 SRCDIR=src
 OBJDIR=target/build
@@ -16,7 +19,7 @@ clean:
 	rm -rf target/
 
 $(OUTPUT): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $(OUTPUT)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(CRT1) -o $(OUTPUT)
 
 $(OBJS): | $(OBJDIR)
 
