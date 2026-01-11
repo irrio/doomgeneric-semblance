@@ -15,6 +15,9 @@ OBJS += $(addprefix $(OBJDIR)/, $(SRC_DOOM))
 
 all: $(OUTPUT)
 
+print: $(OUTPUT)
+	wasm-tools print $(OUTPUT) >target/doomgeneric.wat
+
 clean:
 	rm -rf target/
 
