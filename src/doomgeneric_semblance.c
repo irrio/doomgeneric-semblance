@@ -25,9 +25,10 @@ int DG_GetKey(int* pressed, unsigned char* doomKey) {
     return 0;
 }
 
-int main(int argc, char** argv) {
+void init(int argc, char** argv) {
     doomgeneric_Create(argc, argv);
-    while (1) {
-        doomgeneric_Tick();
-    }
+}
+
+void tick() {
+    doomgeneric_Tick();
 }
