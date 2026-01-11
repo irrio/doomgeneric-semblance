@@ -1,12 +1,13 @@
 
 #include "doomgeneric.h"
+#include <semblance/syscall.h>
 
 void DG_Init() {
-    // ...
+    semblance_syscall_init_window("DOOM", DOOMGENERIC_RESX, DOOMGENERIC_RESY);
 }
 
 void DG_SetWindowTitle(const char *title) {
-    //
+    semblance_syscall_set_window_title(title);
 }
 
 void DG_DrawFrame() {
