@@ -2299,5 +2299,8 @@ boolean G_CheckDemoStatus (void)
     return false; 
 } 
  
+void G_CheckDemoStatus_AtExit(void) {
+    G_CheckDemoStatus();
+}
  
  
