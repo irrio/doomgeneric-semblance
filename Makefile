@@ -1,10 +1,12 @@
 
 LIBCSYSROOT=../libc/target/sysroot
+SDLINCLUDE=$(shell sdl2-config --cflags)
 CRT1=$(LIBCSYSROOT)/lib/crt1.o
 
 CC=clang
 LDFLAGS=-L$(LIBCSYSROOT)/lib -lc
-CFLAGS=-Wall --target=wasm32-unknown-unknown -mbulk-memory -O3 -ffreestanding -nostdlib -I$(LIBCSYSROOT)/include
+INCLUDES=-I$(LIBCSYSROOT)/include $(SDLINCLUDE)
+CFLAGS=-Wall --target=wasm32-unknown-unknown -mbulk-memory -mmultivalue -Xclang -target-abi -Xclang experimental-mv -O3 -ffreestanding -nostdlib $(INCLUDES)
 
 SRCDIR=src
 OBJDIR=target/build
